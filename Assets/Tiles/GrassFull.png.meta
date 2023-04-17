@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 1
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,6 +97,18 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -1818,7 +1830,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      GrassFull_49: 1572814101
+      GrassFull_58: -1058517110
       GrassFull_51: 182084107
       GrassFull_27: -1716024844
       GrassFull_31: 1207956226
@@ -1856,10 +1868,10 @@ TextureImporter:
       GrassFull_7: -307276477
       GrassFull_28: 420112665
       GrassFull_36: -16178673
-      GrassFull_75: 1579554221
+      GrassFull_17: 1285348473
       GrassFull_25: -282154765
       GrassFull_2: -650513077
-      GrassFull_17: 1285348473
+      GrassFull_75: 1579554221
       GrassFull_53: -531396901
       GrassFull_54: -414857554
       GrassFull_76: -2108783359
@@ -1898,7 +1910,7 @@ TextureImporter:
       GrassFull_73: -1895363810
       GrassFull_30: -169251005
       GrassFull_66: 1338226161
-      GrassFull_58: -1058517110
+      GrassFull_49: 1572814101
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
