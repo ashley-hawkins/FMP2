@@ -55,7 +55,7 @@ namespace FMP
 
     }
 
-    public class WorldManager
+    public class WorldManager : MonoBehaviour
     {
         public WorldInformation WorldInfo;
         Dictionary<XY, Block[,]> foregroundInfo;
@@ -86,6 +86,25 @@ namespace FMP
         }
         private void GetBlock(uint x, uint y)
         {
+        }
+
+        public void RequestLoadChunk(XY chunkCoords)
+        {
+            nextLoadedChunks.Add(chunkCoords);
+        }
+
+        public void LateUpdate()
+        {
+            LateUpdateChunks();
+        }
+
+        private void LateUpdateChunks()
+        {
+            var chunksToUnload = loadedChunks;
+            var chunksToLoad = nextLoadedChunks;
+
+            chunksToUnload.ExceptWith(nextLoadedChunks);
+            chunksToLoad.ExceptWith(loadedChunks);
         }
     }
 
