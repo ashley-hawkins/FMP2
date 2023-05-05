@@ -118,8 +118,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-            var loadTilemaps = GameObject.Find("Scene Scripts").GetComponent<LoadTilemap>();
-            loadTilemaps.maps[TileGroup.ForegroundBasic].SetTile(new Vector3Int(400, 0), loadTilemaps.tiles[2]);
+            //var loadTilemaps = GameObject.Find("Scene Scripts").GetComponent<LoadTilemap>();
+            //loadTilemaps.maps[TileGroup.ForegroundBasic].SetTile(new Vector3Int(400, 0), loadTilemaps.tiles[2]);
         }
 
         float currentSpeed = rb.velocity.x;

@@ -26,12 +26,19 @@ namespace FMP
 
     enum TileType
     {
+        Air,
         Dirt,
         Grass,
     }
 
     [System.Serializable]
     public class Block
+    {
+        TileType tileType;
+    }
+    
+    [System.Serializable]
+    public class Wall
     {
         TileType tileType;
     }
@@ -50,26 +57,42 @@ namespace FMP
 
     public class WorldManager
     {
-        public const int ChunkSize = 16;
-        Dictionary<XY, Block[,]> foreground;
+        public WorldInformation WorldInfo;
+        Dictionary<XY, Block[,]> foregroundInfo;
+        Dictionary<XY, Wall[,]> backgroundInfo;
+        // key: chunk coordinates, value: reference count
+        HashSet<XY> loadedChunks;
+        HashSet<XY> nextLoadedChunks;
+        public Tilemap foreground;
+        public Tilemap background;
 
-        public ValueTuple<XY, XY> GetChunkedCoords(ushort x, ushort y)
+        public const int ChunkSize = 16;
+
+        void LoadChunk()
+        {
+
+        }
+
+        public ValueTuple<XY, XY> GetChunkedCoords(uint x, uint y)
         {
             return (((byte)(x / ChunkSize), (byte)(y / ChunkSize)), ((byte)(x % ChunkSize), (byte)(y % ChunkSize)));
         }
 
-        public void SetBlock(ushort x, ushort y, Block block)
+        public void SetBlock(uint x, uint y, Block block)
         {
             (XY chunk, XY offsets) = GetChunkedCoords(x, y);
-            // foreground[chunk]
+            foregroundInfo[chunk][offsets.Item1, offsets.Item2] = block;
+            // update tilemap here
         }
-        private void GetBlock(int x, int y)
+        private void GetBlock(uint x, uint y)
         {
         }
     }
 
     public struct WorldInformation
     {
+        XY dimensions;
+        string name;
 
     }
 
