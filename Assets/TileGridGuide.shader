@@ -6,8 +6,10 @@ Shader "Unlit/TileGridGuide"
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" }
-        Tags { "Queue"="Transparent" }
+        Tags {
+            "RenderType"="Transparent"
+            "Queue"="Transparent"
+        }
         LOD 100
         Blend SrcAlpha OneMinusSrcAlpha
 
@@ -48,10 +50,15 @@ Shader "Unlit/TileGridGuide"
                 return o;
             }
 
-            bool thing(float a)
+            // Checks if the co-ordinate is on a 16-unit boundary
+            bool shouldDraw(float a)
             {
-                float share = 16;
-                return ((int)floor((a))) % share == 0;
+                int share = 16;
+
+                // positive remainder https://stackoverflow.com/a/14997413
+                int offset = (((int)(floor(a))) % share + share) % share;
+
+                return offset == 0 || offset == 15;
             }
 
             fixed4 frag (v2f i) : SV_Target
@@ -61,10 +68,14 @@ Shader "Unlit/TileGridGuide"
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
 
-                float opacity = 0.2f;
+                float maxOpacity = 0.3f;
 
-                bool theThing = thing(i.worldPos.x) || thing(i.worldPos.y);
-                return fixed4(theThing, theThing, theThing, max(0, (float)theThing * (opacity - opacity * length(i.uv - float2(0.5, 0.5)) / 0.5)));
+                bool drawCondition = shouldDraw(i.worldPos.x) || shouldDraw(i.worldPos.y);
+
+                // Opacity falloff by distance from centre
+                float opacity = max(0, (float)drawCondition * (maxOpacity - (maxOpacity * length(i.uv - float2(0.5, 0.5)) / 0.5)));
+
+                return fixed4(drawCondition, drawCondition, drawCondition, opacity);
             }
             ENDCG
         }

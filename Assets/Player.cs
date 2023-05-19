@@ -19,9 +19,12 @@ namespace FMP
             //   Get co-ordinates in the tile grid and call SetBlock on the WorldManager with the block that the player is holding or if the player is holding a pickaxe then call BreakBlock
             if (Input.GetMouseButtonDown(0))
             {
+                var wm = WorldManager.instance;
                 var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                var gridCoords = WorldManager.instance.WorldToGrid(point);
+                var gridCoords = wm.WorldToGrid(point);
                 print(gridCoords);
+                var block = new Block() { tileType = TileType.Grass };
+                wm.SetBlock(gridCoords, block);
             }
         }
     }

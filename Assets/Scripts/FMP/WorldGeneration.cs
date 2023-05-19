@@ -24,17 +24,19 @@ namespace FMP
         public string name;
     }
 
-    enum TileType
+    public enum TileType
     {
         Air,
         Dirt,
         Grass,
+        Stone
     }
 
     [System.Serializable]
     public class Block
     {
-        TileType tileType;
+        
+        public TileType tileType;
     }
     
     [System.Serializable]
@@ -60,71 +62,6 @@ namespace FMP
 
     }
 
-    public class WorldManager : MonoBehaviour
-    {
-        public static WorldManager instance;
-        public WorldInformation WorldInfo;
-        public Grid grid;
-        Dictionary<XY, Block[,]> foregroundInfo;
-        Dictionary<XY, Wall[,]> backgroundInfo;
-        HashSet<XY> loadedChunks;
-        HashSet<XY> nextLoadedChunks;
-        public Tilemap foreground;
-        public Tilemap background;
-
-        public const int ChunkSize = 16;
-
-        void LoadChunk()
-        {
-
-        }
-
-        public Vector2Int WorldToGrid(Vector3 worldPosition)
-        {
-            return (Vector2Int)grid.WorldToCell(worldPosition);
-        }
-
-        public ValueTuple<XY, XY> GetChunkedCoords(uint x, uint y)
-        {
-            return (((byte)(x / ChunkSize), (byte)(y / ChunkSize)), ((byte)(x % ChunkSize), (byte)(y % ChunkSize)));
-        }
-
-        public void SetBlock(uint x, uint y, Block block)
-        {
-            (XY chunk, XY offsets) = GetChunkedCoords(x, y);
-            foregroundInfo[chunk][offsets.Item1, offsets.Item2] = block;
-            // update tilemap here
-        }
-        private void GetBlock(uint x, uint y)
-        {
-        }
-
-        public void RequestLoadChunk(XY chunkCoords)
-        {
-            nextLoadedChunks.Add(chunkCoords);
-        }
-
-        public void LateUpdate()
-        {
-            LateUpdateChunks();
-        }
-
-        private void LateUpdateChunks()
-        {
-            var chunksToUnload = loadedChunks;
-            var chunksToLoad = nextLoadedChunks;
-
-            chunksToUnload.ExceptWith(nextLoadedChunks);
-            chunksToLoad.ExceptWith(loadedChunks);
-        }
-    }
-
-    public struct WorldInformation
-    {
-        XY dimensions;
-        string name;
-
-    }
 
 
     public class WorldGeneration : MonoBehaviour
