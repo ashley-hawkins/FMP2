@@ -43,9 +43,14 @@ namespace FMP
         TileType tileType;
     }
 
+    public interface IItem
+    {
+    }
+
     public class ItemStack
     {
-
+        int itemId;
+        int amount;
     }
 
     public class Chest : Block
@@ -57,7 +62,9 @@ namespace FMP
 
     public class WorldManager : MonoBehaviour
     {
+        public static WorldManager instance;
         public WorldInformation WorldInfo;
+        public 
         Dictionary<XY, Block[,]> foregroundInfo;
         Dictionary<XY, Wall[,]> backgroundInfo;
         // key: chunk coordinates, value: reference count
