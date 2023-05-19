@@ -64,10 +64,9 @@ namespace FMP
     {
         public static WorldManager instance;
         public WorldInformation WorldInfo;
-        public 
+        public Grid grid;
         Dictionary<XY, Block[,]> foregroundInfo;
         Dictionary<XY, Wall[,]> backgroundInfo;
-        // key: chunk coordinates, value: reference count
         HashSet<XY> loadedChunks;
         HashSet<XY> nextLoadedChunks;
         public Tilemap foreground;
@@ -78,6 +77,11 @@ namespace FMP
         void LoadChunk()
         {
 
+        }
+
+        public Vector2Int WorldToGrid(Vector3 worldPosition)
+        {
+            return (Vector2Int)grid.WorldToCell(worldPosition);
         }
 
         public ValueTuple<XY, XY> GetChunkedCoords(uint x, uint y)

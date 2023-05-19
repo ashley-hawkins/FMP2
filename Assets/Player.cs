@@ -20,6 +20,8 @@ namespace FMP
             if (Input.GetMouseButtonDown(0))
             {
                 var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var gridCoords = WorldManager.instance.WorldToGrid(point);
+                print(gridCoords);
             }
         }
     }
