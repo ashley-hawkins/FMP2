@@ -10,6 +10,15 @@ namespace FMP
         // Start is called before the first frame update
         void Start()
         {
+            TeleportToSpawn();
+        }
+
+        void TeleportToSpawn()
+        {
+            print("Teleporting to spawn");
+            Vector3 newPos = (Vector3Int)WorldManager.instance.worldInfo.spawnPoint * 16;
+            newPos.z = transform.position.z;
+            transform.position = newPos;
         }
 
         // Update is called once per frame
@@ -25,6 +34,18 @@ namespace FMP
                 print(gridCoords);
                 var block = new Block() { tileType = TileType.Grass };
                 wm.SetBlock(gridCoords, block);
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                var wm = WorldManager.instance;
+                var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                var gridCoords = wm.WorldToGrid(point);
+                print(gridCoords);
+                wm.BreakBlock(gridCoords);
+            }
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                TeleportToSpawn();
             }
         }
     }

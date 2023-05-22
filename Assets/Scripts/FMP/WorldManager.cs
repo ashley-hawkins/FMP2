@@ -10,12 +10,19 @@ namespace FMP
 {
     using XY = ValueTuple<byte, byte>;
 
+    [System.Serializable]
+    public struct BlockInfo
+    {
+        public TileBase tile;
+        public Sprite icon;
+    }
 
     public class WorldManager : MonoBehaviour
     {
-        public TileBase[] tiles;
+        public GameObject droppedItemPrefab;
+        public BlockInfo[] blocks;
         public static WorldManager instance;
-        public WorldInformation WorldInfo;
+        public WorldInformation worldInfo = new();
         public Grid grid;
         Dictionary<XY, Block[,]> foregroundInfo;
         Dictionary<XY, Wall[,]> backgroundInfo;
@@ -51,10 +58,21 @@ namespace FMP
             foregroundInfo[chunk][offsets.Item1, offsets.Item2] = block;
             // update tilemap here
 
-            foreground.SetTile(((Vector3Int)coords), tiles[(int)block.tileType]);
+            foreground.SetTile(((Vector3Int)coords), blocks[(int)block.tileType].tile);
         }
-        private void GetBlock(uint x, uint y)
+
+        public void BreakBlock(Vector2Int coords)
         {
+            SetBlock(coords, new Block { tileType = TileType.Air });
+            var droppedItem = Instantiate(droppedItemPrefab).GetComponent<DroppedItem>();
+            droppedItem.item = new BlockItem(GetBlock(coords).tileType);
+        }
+        public Block GetBlock(Vector2Int coords)
+        {
+            (XY chunk, XY offsets) = GetChunkedCoords(coords.x, coords.y);
+            if (!foregroundInfo.ContainsKey(chunk)) return null;
+
+            return foregroundInfo[chunk][coords.x, coords.y];
         }
 
         public void RequestLoadChunk(XY chunkCoords)
@@ -93,9 +111,9 @@ namespace FMP
 
     public struct WorldInformation
     {
-        XY dimensions;
-        string name;
-
+        public string name;
+        public Vector2Int dimensions;
+        public Vector2Int spawnPoint;
     }
 
 }

@@ -16,7 +16,6 @@ namespace FMP
             for (int i = 0; i < slots; ++i)
             {
                 var item = Instantiate(hotbarItemPrefab, transform).GetComponent<HotbarItem>();
-                item.transform.localPosition = new Vector3(i * 70 + 40, -40, transform.localPosition.z);
                 item.SetItemNumberText($"{i + 1}");
             }
         }

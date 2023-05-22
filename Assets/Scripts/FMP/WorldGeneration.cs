@@ -47,10 +47,13 @@ namespace FMP
 
     public interface IItem
     {
+        void PrimaryUse();
+        void SecondaryUse();
     }
 
     public class ItemStack
     {
+        IItem itemInterface;
         int itemId;
         int amount;
     }
@@ -153,13 +156,13 @@ namespace FMP
 
         void WorldGen(long seed)
         {
-            var groundHeight = 300;
+            var groundHeight = 250;
             var rngOldState = UnityEngine.Random.state;
             UnityEngine.Random.InitState((int)seed);
             Vector2Int vecSeed = new((int)(seed), (int)(seed >> 32));
-            Vector2Int worldSize = new(60, 200);
+            Vector2Int halfWorldSize = new(100, 200);
             // The worldSize goes in both directions
-            worldSize *= 2;
+            var worldSize = halfWorldSize * 2;
 
             bool[,] squiggleCaveMap = new bool[worldSize.x, worldSize.y];
             bool[,] openCaveMap = new bool[worldSize.x, worldSize.y];
@@ -202,7 +205,7 @@ namespace FMP
 
             //        doCircle(squiggleCaveMap, worldSize / 2, 50);
 
-            doCave(squiggleCaveMap, new Vector2Int(worldSize.x / 2, heightMap[worldSize.x / 2]), heightMap[worldSize.x / 2], 5);
+            doCave(squiggleCaveMap, new Vector2Int(halfWorldSize.x, heightMap[halfWorldSize.x]), heightMap[halfWorldSize.x] + 2, 5);
 
             for (int i = 0; i < worldSize.x; ++i)
             {
@@ -240,6 +243,11 @@ namespace FMP
                     }
                 }
             }
+
+            WorldManager.instance.worldInfo.dimensions = worldSize;
+            WorldManager.instance.worldInfo.spawnPoint = new Vector2Int(halfWorldSize.x, heightMap[halfWorldSize.x]);
+
+            CameraFollow.maxCoords = worldSize * 16;
 
             UnityEngine.Random.state = rngOldState;
         }
