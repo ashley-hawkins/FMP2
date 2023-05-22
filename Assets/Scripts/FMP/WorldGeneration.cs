@@ -78,16 +78,44 @@ namespace FMP
 
         void doCircle(bool[,] caveMap, Vector2Int pos, int radius)
         {
-            float minAngle = Mathf.Acos(1f - 1f / radius);
-            for (float angle = 0; angle < 360; angle += minAngle)
-            {
-                int circumX = pos.x + Mathf.RoundToInt(Mathf.Cos(angle) * radius);
-                int circumY = pos.y + Mathf.RoundToInt(Mathf.Sin(angle) * radius);
+            // Angle between pixels
+            // float minAngle = Mathf.Acos(1f - 1f / radius);
+            
+            // for (float angle = 0; angle < 360; angle += minAngle)
+            // {
+            //     int circumX = pos.x + Mathf.RoundToInt(Mathf.Cos(angle) * radius);
+            //     int circumY = pos.y + Mathf.RoundToInt(Mathf.Sin(angle) * radius);
 
-                for (int x = pos.x; Mathf.Sign(x - circumX) == Mathf.Sign(pos.x - circumX); x -= Mathf.RoundToInt(Mathf.Sign(pos.x - circumX)))
+            //     for (int x = pos.x; Mathf.Sign(x - circumX) == Mathf.Sign(pos.x - circumX); x -= Mathf.RoundToInt(Mathf.Sign(pos.x - circumX)))
+            //     {
+            //         if (0 <= x && x <= caveMap.GetUpperBound(0) && 0 <= circumY && circumY <= caveMap.GetUpperBound(1))
+            //             caveMap[x, circumY] = false;
+            //     }
+            // }
+
+            
+            // x ^ 2 + y ^ 2 = r ^ 2
+            var r_sq = radius * radius;
+            for (int x = 0; x < radius; x++)
+            {
+                // so then, y = sqrt(r ^ 2 - x ^ 2)
+                var x_sq = x * x;
+                var max_y = Mathf.RoundToInt(Mathf.Sqrt(r_sq - x_sq));
+
+                System.Action<Vector2Int> doSingleTile = (Vector2Int offset) => {
+                    var offsetPos = pos + offset;
+                    if (0 < offsetPos.x && offsetPos.x < caveMap.GetUpperBound(0) && 0 < offsetPos.y && offsetPos.y < caveMap.GetUpperBound(1))
+                    {
+                        caveMap[offsetPos.x, offsetPos.y] = false;
+                    }
+                };
+
+                for (int y = 0; y <= max_y; ++y)
                 {
-                    if (0 <= x && x <= caveMap.GetUpperBound(0) && 0 <= circumY && circumY <= caveMap.GetUpperBound(1))
-                        caveMap[x, circumY] = false;
+                    doSingleTile(new Vector2Int(x, y));
+                    doSingleTile(new Vector2Int(-x, y));
+                    doSingleTile(new Vector2Int(x, -y));
+                    doSingleTile(new Vector2Int(-x, -y));
                 }
             }
         }
@@ -125,10 +153,11 @@ namespace FMP
 
         void WorldGen(long seed)
         {
+            var groundHeight = 300;
             var rngOldState = UnityEngine.Random.state;
             UnityEngine.Random.InitState((int)seed);
             Vector2Int vecSeed = new((int)(seed), (int)(seed >> 32));
-            Vector2Int worldSize = new(500, 300);
+            Vector2Int worldSize = new(60, 200);
             // The worldSize goes in both directions
             worldSize *= 2;
 
@@ -153,7 +182,7 @@ namespace FMP
                 for (int j = 0; j < worldSize.y; ++j)
                 {
                     // bool b = (Mathf.PerlinNoise(i / 30.0f, j / 30.0f) + Mathf.PerlinNoise(i / 20.0f, j / 20.0f) * 0.6f) / 1.6f > 0.35f;
-                    bool b = j > 400 || Util.GetSimplexNoise(i / 128f, j / 128f, 5) < 0.2f;
+                    bool b = j > groundHeight || Util.GetSimplexNoise(i / 128f, j / 128f, 5) < 0.2f;
                     openCaveMap[i, j] = b;
                     squiggleCaveMap[i, j] = true;
                 }
@@ -193,16 +222,20 @@ namespace FMP
                         if (first)
                         {
                             // TODO: Place Grass
+                            WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.Grass });
 
                             first = false;
                         }
-                        else if (j > 400)
+                        else if (j > groundHeight)
                         {
+                            print("placing dirt");
                             // TODO: Place dirt
+                            WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.Dirt });
                         }
                         else
                         {
                             // TODO: Place stone
+                            WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.Stone });
                         }
                     }
                 }

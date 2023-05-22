@@ -5,6 +5,7 @@ using UnityEngine;
 public class FollowMouse : MonoBehaviour
 {
     Camera cam;
+    public FMP.CameraFollow camFollow;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,8 +13,9 @@ public class FollowMouse : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
+        camFollow.DoUpdate();
         Vector3 newPosition = (Vector3Int.FloorToInt(cam.ScreenToWorldPoint(Input.mousePosition) / 16) * 16);
         newPosition.x += 8;
         newPosition.y += 8;

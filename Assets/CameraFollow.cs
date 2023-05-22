@@ -16,7 +16,7 @@ namespace FMP
         }
 
         // Update is called once per frame
-        void LateUpdate()
+        public void DoUpdate()
         {
             var bottomLeft = (Vector2)cam.ViewportToWorldPoint(new Vector2(1, 0));
             var centre = (Vector2)cam.ViewportToWorldPoint(Vector2.one * 0.5f);
