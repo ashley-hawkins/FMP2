@@ -53,9 +53,9 @@ namespace FMP
 
     public class ItemStack
     {
-        IItem itemInterface;
-        int itemId;
-        int amount;
+        public ItemBase item;
+        public int itemId;
+        public int amount;
     }
 
     public class Chest : Block
@@ -231,7 +231,7 @@ namespace FMP
                         }
                         else if (j > groundHeight)
                         {
-                            print("placing dirt");
+                            //print("placing dirt");
                             // TODO: Place dirt
                             WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.Dirt });
                         }

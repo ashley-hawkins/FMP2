@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16217bf8a2653018ca668f2f73f33c92, type: 3}
-  m_Name: DirtBlock
+  m_Name: StoneBlock
   m_EditorClassIdentifier: 
-  Name: Dirt Block
-  Icon: {fileID: -1150190080, guid: f9940d2ce6766295e8f75e59430c5057, type: 3}
-  WorldSprite: {fileID: -1150190080, guid: f9940d2ce6766295e8f75e59430c5057, type: 3}
+  Name: Stone Block
+  Icon: {fileID: -1150190080, guid: fc2985b1289455917963621be48c14ae, type: 3}
+  WorldSprite: {fileID: -1150190080, guid: fc2985b1289455917963621be48c14ae, type: 3}
   tile: 1

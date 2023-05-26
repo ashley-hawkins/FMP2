@@ -12,6 +12,7 @@ namespace FMP
 
     public enum ItemID
     {
+        None,
         DirtBlock,
         GrassBlock,
         StoneBlock,
@@ -66,24 +67,34 @@ namespace FMP
                 foregroundInfo.Add(chunk, new Block[ChunkSize, ChunkSize]);
             }
             foregroundInfo[chunk][offsets.Item1, offsets.Item2] = block;
-            // update tilemap here
-
             foreground.SetTile(((Vector3Int)coords), blocks[(int)block.tileType].tile);
         }
 
         public void BreakBlock(Vector2Int coords)
         {
+            var block = GetBlock(coords);
+
+            if (block == null || block.tileType == TileType.Air)
+                return; // already "broken"
+
             SetBlock(coords, new Block { tileType = TileType.Air });
-            var droppedItem = Instantiate(droppedItemPrefab).GetComponent<DroppedItem>();
-            // FIXME: THIS NEEDS TO BE IMPLEMENTED PROPERLY.
-            // droppedItem.item = new BlockItem(GetBlock(coords).tileType);
+            var droppedItem = Instantiate(droppedItemPrefab, ((Vector3Int)(coords * 16)) + new Vector3Int(8, 8, 0), Quaternion.identity).GetComponent<DroppedItem>();
+            droppedItem.RandomizeHorizontalSpeed();
+            print("Breaking block: " + block.tileType.ToString());
+            droppedItem.itemStack = new ItemStack
+            {
+                itemId = (int)blocks[(int)block.tileType].dropId,
+                item = ItemManager.instance.Items[(int)blocks[(int)block.tileType].dropId],
+                amount = 1
+            };
         }
         public Block GetBlock(Vector2Int coords)
         {
             (XY chunk, XY offsets) = GetChunkedCoords(coords.x, coords.y);
             if (!foregroundInfo.ContainsKey(chunk)) return null;
 
-            return foregroundInfo[chunk][coords.x, coords.y];
+            var block = foregroundInfo[chunk][offsets.Item1, offsets.Item2];
+            return block;
         }
 
         public void RequestLoadChunk(XY chunkCoords)
@@ -105,17 +116,18 @@ namespace FMP
             //chunksToLoad.ExceptWith(loadedChunks);
         }
 
-        private void Start()
+        private void Awake()
         {
-            print("setting instance next");
             if (instance != null)
             {
-                print("not setting instance");
                 Destroy(gameObject);
                 return;
             }
-            print("setting instance");
             instance = this;
+        }
+
+        private void Start()
+        {
             foregroundInfo = new();
         }
     }
