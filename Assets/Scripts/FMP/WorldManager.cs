@@ -10,11 +10,21 @@ namespace FMP
 {
     using XY = ValueTuple<byte, byte>;
 
+    public enum ItemID
+    {
+        DirtBlock,
+        GrassBlock,
+        StoneBlock,
+        StonePickaxe,
+        StoneSword
+    }
+
     [System.Serializable]
     public struct BlockInfo
     {
         public TileBase tile;
         public Sprite icon;
+        public ItemID dropId;
     }
 
     public class WorldManager : MonoBehaviour
@@ -65,7 +75,8 @@ namespace FMP
         {
             SetBlock(coords, new Block { tileType = TileType.Air });
             var droppedItem = Instantiate(droppedItemPrefab).GetComponent<DroppedItem>();
-            droppedItem.item = new BlockItem(GetBlock(coords).tileType);
+            // FIXME: THIS NEEDS TO BE IMPLEMENTED PROPERLY.
+            // droppedItem.item = new BlockItem(GetBlock(coords).tileType);
         }
         public Block GetBlock(Vector2Int coords)
         {

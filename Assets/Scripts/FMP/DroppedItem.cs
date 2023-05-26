@@ -6,7 +6,7 @@ namespace FMP
 {
     public class DroppedItem : MonoBehaviour
     {
-        ItemStack item;
+        public ItemStack item;
         // Start is called before the first frame update
         void Start()
         {
