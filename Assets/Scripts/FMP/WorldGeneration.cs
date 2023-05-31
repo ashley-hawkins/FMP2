@@ -17,19 +17,13 @@ namespace FMP
         Foreground,
     }
 
-    [System.Serializable]
-    public class TileInfo
-    {
-        public Sprite sprite;
-        public string name;
-    }
-
     public enum TileType
     {
         Air,
         Dirt,
         Grass,
-        Stone
+        Stone,
+        DarkStone
     }
 
     [System.Serializable]
@@ -53,6 +47,16 @@ namespace FMP
 
     public class ItemStack
     {
+        public void Add(int change)
+        {
+            amount += change;
+            if (amount <= 0)
+            {
+                amount = 0;
+                item = null;
+                itemId = (int)ItemID.None;
+            }
+        }
         public ItemBase item;
         public int itemId;
         public int amount;
@@ -69,6 +73,7 @@ namespace FMP
 
     public class WorldGeneration : MonoBehaviour
     {
+        public CameraFollow cameraFollow;
         public string loadFile;
 
         void Start()
@@ -120,6 +125,56 @@ namespace FMP
                     doSingleTile(new Vector2Int(x, -y));
                     doSingleTile(new Vector2Int(-x, -y));
                 }
+            }
+        }
+        void doCircleDirect(Vector2Int pos, int radius, TileType tileType)
+        {
+            // Angle between pixels
+            // float minAngle = Mathf.Acos(1f - 1f / radius);
+            
+            // for (float angle = 0; angle < 360; angle += minAngle)
+            // {
+            //     int circumX = pos.x + Mathf.RoundToInt(Mathf.Cos(angle) * radius);
+            //     int circumY = pos.y + Mathf.RoundToInt(Mathf.Sin(angle) * radius);
+
+            //     for (int x = pos.x; Mathf.Sign(x - circumX) == Mathf.Sign(pos.x - circumX); x -= Mathf.RoundToInt(Mathf.Sign(pos.x - circumX)))
+            //     {
+            //         if (0 <= x && x <= caveMap.GetUpperBound(0) && 0 <= circumY && circumY <= caveMap.GetUpperBound(1))
+            //             caveMap[x, circumY] = false;
+            //     }
+            // }
+            System.Action<Vector2Int> doSingleTile = (Vector2Int offset) => {
+                var offsetPos = pos + offset;
+                if (0 <= offsetPos.x && 0 <= offsetPos.y)
+                {
+                    WorldManager.instance.SetBlock(offsetPos, new Block { tileType = tileType});
+                }
+            };
+
+            
+            // x ^ 2 + y ^ 2 = r ^ 2
+            var r_sq = radius * radius;
+            for (int x = 0; x <= radius; x++)
+            {
+                // so then, y = sqrt(r ^ 2 - x ^ 2)
+                var x_sq = x * x;
+                var max_y = Mathf.RoundToInt(Mathf.Sqrt(r_sq - x_sq));
+
+                print("For r = " + radius + ", x = " + x + ": y = " + max_y);
+
+                var y = max_y;
+                //for (int y = 0; y <= max_y; ++y)
+                //{
+                    doSingleTile(new Vector2Int(x, y));
+                    doSingleTile(new Vector2Int(-x, y));
+                    doSingleTile(new Vector2Int(x, -y));
+                    doSingleTile(new Vector2Int(-x, -y));
+                    
+                    doSingleTile(new Vector2Int(y, x));
+                    doSingleTile(new Vector2Int(y, -x));
+                    doSingleTile(new Vector2Int(-y, x));
+                    doSingleTile(new Vector2Int(-y, -x));
+                //}
             }
         }
 
@@ -244,10 +299,13 @@ namespace FMP
                 }
             }
 
+            doCircleDirect(new Vector2Int(10, 10), 6, TileType.DarkStone);
+            doCircleDirect(new Vector2Int(10, 10), 5, TileType.DarkStone);
+
             WorldManager.instance.worldInfo.dimensions = worldSize;
             WorldManager.instance.worldInfo.spawnPoint = new Vector2Int(halfWorldSize.x, heightMap[halfWorldSize.x]);
 
-            CameraFollow.maxCoords = worldSize * 16;
+            cameraFollow.maxCoords = worldSize * 16;
 
             UnityEngine.Random.state = rngOldState;
         }

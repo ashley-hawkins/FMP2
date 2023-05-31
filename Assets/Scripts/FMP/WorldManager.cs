@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -17,7 +15,8 @@ namespace FMP
         GrassBlock,
         StoneBlock,
         StonePickaxe,
-        StoneSword
+        GoldPickaxe,
+        DarkStoneBlock
     }
 
     [System.Serializable]
@@ -26,6 +25,7 @@ namespace FMP
         public TileBase tile;
         public Sprite icon;
         public ItemID dropId;
+        public int miningLevel;
     }
 
     public class WorldManager : MonoBehaviour
@@ -41,6 +41,7 @@ namespace FMP
         HashSet<XY> nextLoadedChunks;
         public Tilemap foreground;
         public Tilemap background;
+        public LayerMask ignoreTerrainMask;
 
         public const int ChunkSize = 16;
 
@@ -59,27 +60,43 @@ namespace FMP
             return (((byte)(x / ChunkSize), (byte)(y / ChunkSize)), ((byte)(x % ChunkSize), (byte)(y % ChunkSize)));
         }
 
-        public void SetBlock(Vector2Int coords, Block block)
+        public bool SetBlock(Vector2Int coords, Block block, bool ignoreExisting = true)
         {
             (XY chunk, XY offsets) = GetChunkedCoords(coords.x, coords.y);
             if (!foregroundInfo.ContainsKey(chunk))
             {
                 foregroundInfo.Add(chunk, new Block[ChunkSize, ChunkSize]);
             }
+            if (!ignoreExisting)
+            {
+                var existingBlock = foregroundInfo[chunk][offsets.Item1, offsets.Item2];
+                if
+                    (
+                        (existingBlock != null && existingBlock.tileType != TileType.Air) ||
+                        Physics2D.OverlapBox(coords * 16 + new Vector2Int(8, 8), new Vector2Int(16, 16), 0, ignoreTerrainMask) != null
+                    )
+                    return false;
+
+            } 
             foregroundInfo[chunk][offsets.Item1, offsets.Item2] = block;
             foreground.SetTile(((Vector3Int)coords), blocks[(int)block.tileType].tile);
+
+            return true;
         }
 
-        public void BreakBlock(Vector2Int coords)
+        public void BreakBlock(Vector2Int coords, int miningLevel)
         {
             var block = GetBlock(coords);
 
+            if (blocks[(int)block.tileType].miningLevel > miningLevel)
+                return; // Pickaxe too weak
             if (block == null || block.tileType == TileType.Air)
                 return; // already "broken"
 
             SetBlock(coords, new Block { tileType = TileType.Air });
             var droppedItem = Instantiate(droppedItemPrefab, ((Vector3Int)(coords * 16)) + new Vector3Int(8, 8, 0), Quaternion.identity).GetComponent<DroppedItem>();
             droppedItem.RandomizeHorizontalSpeed();
+
             print("Breaking block: " + block.tileType.ToString());
             droppedItem.itemStack = new ItemStack
             {

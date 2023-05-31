@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6568195719357406867}
   m_Layer: 7
   m_Name: DroppedItem
-  m_TagString: Untagged
+  m_TagString: DroppedItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 890596fde2c400b4882da00b92d9121a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  follow: {fileID: 0}
 --- !u!50 &2400533242856258761
 Rigidbody2D:
   serializedVersion: 4

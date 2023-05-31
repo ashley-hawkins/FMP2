@@ -8,7 +8,7 @@ namespace FMP
     {
         public Transform subject;
         Camera cam;
-        public static Vector2 maxCoords;
+        public Vector2 maxCoords;
         void Start()
         {
             cam = GetComponent<Camera>();

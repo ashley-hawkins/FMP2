@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16217bf8a2653018ca668f2f73f33c92, type: 3}
-  m_Name: StoneBlock
+  m_Name: Dark Stone Block
   m_EditorClassIdentifier: 
-  Name: Stone Block
-  Icon: {fileID: -1150190080, guid: fc2985b1289455917963621be48c14ae, type: 3}
-  WorldSprite: {fileID: -1150190080, guid: fc2985b1289455917963621be48c14ae, type: 3}
-  tile: 3
+  Name: Dark Stone Block
+  Icon: {fileID: 1230038983, guid: 2b1fdd72aaf96feffa3c43a867c27aa8, type: 3}
+  WorldSprite: {fileID: 1230038983, guid: 2b1fdd72aaf96feffa3c43a867c27aa8, type: 3}
+  tile: 4
