@@ -81,7 +81,7 @@ namespace FMP
             if (Input.GetMouseButtonDown(1))
             {
             }
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.U))
             {
                 TeleportToSpawn();
             }
@@ -137,7 +137,7 @@ namespace FMP
                 Vector3 centrePoint = new Vector3(transform.position.x, transform.position.y - 16f);
                 //Debug.DrawLine(centrePoint, centrePoint + Vector3.up * 0.1f, Color.black, 1f);
                 //print(centrePoint);
-                Collider2D overlap = Physics2D.OverlapBox(centrePoint, new Vector2(32 * 1.8f, 0.00001f), 0, groundLayerMask);
+                Collider2D overlap = Physics2D.OverlapBox(centrePoint, new Vector2(16 * 1.8f, 0.00001f), 0, groundLayerMask);
                 if (overlap != null)
                 {
                     canJump = true;
@@ -174,7 +174,11 @@ namespace FMP
 
             float forceRequired = 10f * rb.mass * (desiredSpeedDelta != 0 ? Mathf.Sign(desiredSpeedDelta) : 0);
             if (desiredSpeed == 0) forceRequired /= 2f;
-            if (Mathf.Abs(desiredSpeedDelta) < 1 && desiredSpeed == 0) forceRequired = 0;
+            if (Mathf.Abs(desiredSpeedDelta) < 1 && desiredSpeed == 0)
+            {
+                forceRequired = 0;
+                rb.velocity = new Vector2(0, rb.velocity.y);
+            }
 
             if (forceRequired != 0)
             {
@@ -191,7 +195,6 @@ namespace FMP
         }
         void OnTriggerEnter2D(Collider2D other)
         {
-            inventory.RemoveAll(x => x.itemId == (int)ItemID.None);
             if (!other.CompareTag("DroppedItem")) return;
             var di = other.GetComponent<DroppedItem>();
             var existingStack = inventory.Find(x => x.itemId == di.itemStack.itemId);
@@ -201,7 +204,17 @@ namespace FMP
             }
             else
             {
-                inventory.Add(di.itemStack);
+                var emptyStack = inventory.Find(x => x.itemId == (int)ItemID.None);
+                if (emptyStack != null)
+                {
+                    emptyStack.amount = 0;
+                    emptyStack.itemId = di.itemStack.itemId;
+                    emptyStack.Add(di.itemStack.amount);
+                }
+                else
+                {
+                    inventory.Add(di.itemStack);
+                }
             }
             hotbar.UpdateDisplay(inventory);
             Destroy(other.gameObject);

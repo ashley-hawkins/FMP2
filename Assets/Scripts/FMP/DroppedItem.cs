@@ -31,7 +31,7 @@ namespace FMP
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         { 
             if (follow != null)
             {
@@ -39,11 +39,11 @@ namespace FMP
                 if (difference.magnitude < 16 * 4)
                 {
                     // TODO: gravitate towards player, if touching then player picks up.
-                    rb.AddForce(difference.normalized * 200f);
+                    rb.AddForce(difference.normalized * 800f);
                     // https://stackoverflow.com/a/60587061
                     // If the item is traveling towards the player, and is are within the player's pickup range (implied by enclosing if statement)
                     // then disable collisions with terrain, by using the flying item layer instead of the normal one.
-                    if (Vector3.Dot(rb.velocity, difference.normalized) > 0)
+                    if (Vector3.Dot(rb.velocity, difference.normalized) >= 0)
                     {
                         gameObject.layer = flyingLayer;
                         return;
