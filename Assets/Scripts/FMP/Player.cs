@@ -66,20 +66,23 @@ namespace FMP
         {
             // Detect left click from player:
             //   Get co-ordinates in the tile grid and call SetBlock on the WorldManager with the block that the player is holding or if the player is holding a pickaxe then call BreakBlock
-            if (Input.GetMouseButtonDown(0))
+            if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
             {
-                
-                // var wm = WorldManager.instance;
-                var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                // var gridCoords = wm.WorldToGrid(point);
-                // print(gridCoords);
-                // var block = new Block() { tileType = TileType.Grass };
-                // wm.SetBlock(gridCoords, block);
-                inventory[selectedItemIndex].item.BeginUse(point, inventory[selectedItemIndex]);
-                hotbar.UpdateDisplay(inventory);
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    // var wm = WorldManager.instance;
+                    var point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    // var gridCoords = wm.WorldToGrid(point);
+                    // print(gridCoords);
+                    // var block = new Block() { tileType = TileType.Grass };
+                    // wm.SetBlock(gridCoords, block);
+                    inventory[selectedItemIndex].item.BeginUse(point, inventory[selectedItemIndex]);
+                    hotbar.UpdateDisplay(inventory);
+                }
+                if (Input.GetMouseButtonDown(1))
+                {
+                }
             }
             if (Input.GetKeyDown(KeyCode.U))
             {
@@ -92,11 +95,11 @@ namespace FMP
             }
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                SetSelectedItem(1);                
+                SetSelectedItem(1);
             }
             if (Input.GetKeyDown(KeyCode.Alpha3))
             {
-                SetSelectedItem(2);                
+                SetSelectedItem(2);
             }
             if (Input.GetKeyDown(KeyCode.Alpha4))
             {
