@@ -8,8 +8,9 @@ namespace FMP
     public class Hotbar : MonoBehaviour
     {
         public GameObject hotbarItemPrefab;
-        // Start is called before the first frame update
         List<HotbarItem> slots;
+        const int numHotbarSlots = 10;
+        // Start is called before the first frame update
         void Start()
         {
             slots = new List<HotbarItem>();
@@ -45,6 +46,13 @@ namespace FMP
                 bool isSelected = currentIndex == selectIndex;
                 slot.SetSelected(isSelected);
                 currentIndex++;
+            }
+        }
+        public void SetInventoryDisplay(bool shouldDisplay)
+        {
+            foreach (var slot in slots.Skip(numHotbarSlots))
+            {
+                slot.gameObject.SetActive(shouldDisplay);
             }
         }
     }

@@ -8,7 +8,7 @@ namespace FMP
     {
         int selectedItemIndex = 0;
         public Hotbar hotbar;
-        public static int InventorySize = 10;
+        public static int InventorySize = 40;
         public static Player instance;
         List<ItemStack> inventory = new();
 
