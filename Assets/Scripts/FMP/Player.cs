@@ -84,6 +84,13 @@ namespace FMP
                 {
                 }
             }
+            else
+            {
+                UnityEngine.EventSystems.PointerEventData ed = new(UnityEngine.EventSystems.EventSystem.current);
+                //ed.
+                //UnityEngine.EventSystems.EventSystem.current.RaycastAll
+
+            }
             if (Input.GetKeyDown(KeyCode.U))
             {
                 TeleportToSpawn();

@@ -45,6 +45,7 @@ namespace FMP
         void SecondaryUse();
     }
 
+    [System.Serializable]
     public class ItemStack
     {
         public void Add(int change)

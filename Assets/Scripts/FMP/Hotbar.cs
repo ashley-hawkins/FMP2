@@ -8,8 +8,10 @@ namespace FMP
     public class Hotbar : MonoBehaviour
     {
         public GameObject hotbarItemPrefab;
+        public GameObject craftingButton;
         List<HotbarItem> slots;
         const int numHotbarSlots = 10;
+        bool isOpen = false;
         // Start is called before the first frame update
         void Start()
         {
@@ -20,12 +22,17 @@ namespace FMP
                 item.SetItemNumberText($"{i + 1}");
                 slots.Add(item);
             }
+            SetInventoryDisplay(isOpen);
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                isOpen = !isOpen;
+                SetInventoryDisplay(isOpen);
+            }
         }
         public void UpdateDisplay(List<ItemStack> items)
         {
@@ -54,6 +61,7 @@ namespace FMP
             {
                 slot.gameObject.SetActive(shouldDisplay);
             }
+            craftingButton.SetActive(shouldDisplay);
         }
     }
 }
