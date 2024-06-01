@@ -16,7 +16,8 @@ namespace FMP
         StoneBlock,
         StonePickaxe,
         GoldPickaxe,
-        DarkStoneBlock
+        DarkStoneBlock,
+        IronOreBlock,
     }
 
     [System.Serializable]

@@ -23,7 +23,9 @@ namespace FMP
         Dirt,
         Grass,
         Stone,
-        DarkStone
+        DarkStone,
+        IronOre,
+        GoldOre
     }
 
     [System.Serializable]
@@ -222,6 +224,8 @@ namespace FMP
 
             bool[,] squiggleCaveMap = new bool[worldSize.x, worldSize.y];
             bool[,] openCaveMap = new bool[worldSize.x, worldSize.y];
+            bool[,] ironOreMap = new bool[worldSize.x, worldSize.y];
+            bool[,] goldOreMap = new bool[worldSize.x, worldSize.y];
             int[] heightMap = new int[worldSize.x];
 
             for (int i = 0; i < worldSize.x; ++i)
@@ -236,14 +240,27 @@ namespace FMP
                 heightMap[i] = height;
             }
 
+            var caveSeed = new Vector2(UnityEngine.Random.Range(-50000f, 50000f), UnityEngine.Random.Range(-50000f, 50000f));
             for (int i = 0; i < worldSize.x; ++i)
             {
                 for (int j = 0; j < worldSize.y; ++j)
                 {
+                    var coords = caveSeed + new Vector2(i, j) / 128f;
                     // bool b = (Mathf.PerlinNoise(i / 30.0f, j / 30.0f) + Mathf.PerlinNoise(i / 20.0f, j / 20.0f) * 0.6f) / 1.6f > 0.35f;
-                    bool b = j > groundHeight || Util.GetSimplexNoise(i / 128f, j / 128f, 5) < 0.2f;
+                    bool b = j > groundHeight || Util.GetSimplexNoise(coords.x, coords.y, 5) < 0.2f;
                     openCaveMap[i, j] = b;
                     squiggleCaveMap[i, j] = true;
+                }
+            }
+
+            var ironOreSeed = new Vector2(UnityEngine.Random.Range(-50000f, 50000f), UnityEngine.Random.Range(-50000f, 50000f));
+            for (int i = 0; i < worldSize.x; ++i)
+            {
+                for (int j = 0; j < worldSize.y; ++j)
+                {
+                    var coords = ironOreSeed + new Vector2(i, j) / 32f;
+                    bool b = Util.GetSimplexNoise(coords.x, coords.y, 5) < -0.47f;
+                    ironOreMap[i, j] = b;
                 }
             }
 
@@ -290,6 +307,10 @@ namespace FMP
                             //print("placing dirt");
                             // TODO: Place dirt
                             WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.Dirt });
+                        }
+                        else if (ironOreMap[i, j])
+                        {
+                            WorldManager.instance.SetBlock(new Vector2Int(i, j), new Block { tileType = TileType.IronOre });
                         }
                         else
                         {

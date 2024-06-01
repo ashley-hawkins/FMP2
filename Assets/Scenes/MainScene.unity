@@ -4228,6 +4228,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1a6c910c745f96da818622dfe48866c, type: 2}
   - {fileID: 11400000, guid: 8082f640a32afe58f8433efaf3830c58, type: 2}
   - {fileID: 11400000, guid: f287e2ecd10dd559a9f05e953a17e4cb, type: 2}
+  - {fileID: 11400000, guid: 092ee085d227e0c54838c45e72fb5396, type: 2}
 --- !u!1 &434307082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5381,7 +5382,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 442
+  orthographic size: 464
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -18490,6 +18491,10 @@ MonoBehaviour:
     icon: {fileID: 0}
     dropId: 6
     miningLevel: 1
+  - tile: {fileID: 11400000, guid: 454195b398e90d82491ae3c78ea88892, type: 2}
+    icon: {fileID: 0}
+    dropId: 7
+    miningLevel: 0
   grid: {fileID: 616756451}
   foreground: {fileID: 1328328661}
   background: {fileID: 0}
