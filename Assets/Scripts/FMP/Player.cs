@@ -77,7 +77,9 @@ namespace FMP
                     // print(gridCoords);
                     // var block = new Block() { tileType = TileType.Grass };
                     // wm.SetBlock(gridCoords, block);
-                    inventory[selectedItemIndex].item.BeginUse(point, inventory[selectedItemIndex]);
+                    var stack = inventory[selectedItemIndex];
+                    var item = stack.item;
+                    item.BeginUse(point, stack);
                     hotbar.UpdateDisplay(inventory);
                 }
                 if (Input.GetMouseButtonDown(1))
@@ -207,18 +209,20 @@ namespace FMP
         {
             if (!other.CompareTag("DroppedItem")) return;
             var di = other.GetComponent<DroppedItem>();
-            var existingStack = inventory.Find(x => x.itemId == di.itemStack.itemId);
+            var existingStack = inventory.Find(x => x.itemId == di.itemStack.itemId && x.amount != 0);
             if (existingStack != null)
             {
                 existingStack.Add(di.itemStack.amount);
+                existingStack.item = di.itemStack.item;
             }
             else
             {
-                var emptyStack = inventory.Find(x => x.itemId == (int)ItemID.None);
+                var emptyStack = inventory.Find(x => x.itemId == (int)ItemID.None || x.amount == 0);
                 if (emptyStack != null)
                 {
                     emptyStack.amount = 0;
                     emptyStack.itemId = di.itemStack.itemId;
+                    emptyStack.item = di.itemStack.item;
                     emptyStack.Add(di.itemStack.amount);
                 }
                 else
