@@ -155,7 +155,7 @@ namespace FMP
                     canJump = true;
                 }
             }
-            float maxSpeed = 8f * 6f;
+            float maxSpeed = 8f * 7f;
             float desiredSpeed = 0;
             if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
             {
@@ -170,7 +170,7 @@ namespace FMP
             }
             if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow)) && canJump)
             {
-                rb.AddForce(Vector2.up * rb.mass * 16.0f * 6, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * rb.mass * 16.0f * 7, ForceMode2D.Impulse);
             }
 
             if (Input.GetKeyDown(KeyCode.T))
