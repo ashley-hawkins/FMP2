@@ -47,22 +47,28 @@ namespace FMP
         void SecondaryUse();
     }
 
-    [System.Serializable]
-    public class ItemStack
+[System.Serializable]
+public class ItemStack
+{
+    public void Add(int change)
     {
-        public void Add(int change)
+        amount += change;
+        if (amount <= 0)
         {
-            amount += change;
-            if (amount <= 0)
-            {
-                amount = 0;
-                itemId = ItemID.None;
-            }
+            amount = 0;
+            itemId = ItemID.None;
         }
-        public ItemID itemId;
-        public ItemBase item { get { return ItemManager.ItemFromID(itemId); } }
-        public int amount;
     }
+    public ItemID itemId;
+    public ItemBase item
+    {
+        get
+        {
+            return ItemManager.ItemFromID(itemId);
+        }
+    }
+    public int amount;
+}
 
     public class Chest : Block
     {

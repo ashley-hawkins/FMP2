@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace FMP
 {
@@ -26,7 +27,12 @@ namespace FMP
             rb = GetComponent<Rigidbody2D>();
             groundLayerMask = LayerMask.GetMask("Default");
         }
-        // Start is called before the first frame update
+        
+        public List<ItemStack> GetTotalAmounts()
+        {
+            return inventory.GroupBy(x => x.itemId).Select(x => new ItemStack { itemId = x.Key, amount = x.Sum(y => y.amount) }).ToList();
+        }
+
         void Start()
         {
             inventory.Add(new ItemStack

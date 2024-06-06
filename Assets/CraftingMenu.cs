@@ -11,6 +11,9 @@ namespace FMP
         GameObject itemSlotPrefab;
         List<ItemBase> craftables;
 
+        [SerializeField]
+        Player player;
+
         List<ItemID> GetCraftableItems(List<ItemStack> availableResources)
         {
             var allItemIds = Enumerable
@@ -37,7 +40,15 @@ namespace FMP
 
         void Refresh()
         {
+        }
 
+        public void CheckCraftables()
+        {
+            var craftables = GetCraftableItems(player.GetTotalAmounts());
+            foreach (var item in craftables)
+            {
+                print(item);
+            }
         }
     }
 }

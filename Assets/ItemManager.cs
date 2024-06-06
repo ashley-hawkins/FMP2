@@ -8,6 +8,8 @@ namespace FMP
     public class ItemManager : MonoBehaviour
     {
         public static ItemManager instance;
+
+        [SerializeField]
         private ItemBase[] Items;
         private ItemBase.Recipe[] Recipes;
 
