@@ -11,6 +11,9 @@ namespace FMP
         public Hotbar hotbar;
         public const int InventorySize = 40;
         public static Player instance;
+
+        Combat combat;
+
         public List<ItemStack> inventory { get; private set; }
 
         Rigidbody2D rb;
@@ -23,18 +26,29 @@ namespace FMP
                 return;
             }
             instance = this;
-
-            rb = GetComponent<Rigidbody2D>();
-            groundLayerMask = LayerMask.GetMask("Default");
         }
-        
+
         public List<ItemStack> GetTotalAmounts()
         {
             return inventory.GroupBy(x => x.itemId).Select(x => new ItemStack { itemId = x.Key, amount = x.Sum(y => y.amount) }).ToList();
         }
 
+        void TakeDamage()
+        {
+
+        }
+
+        void TakeKnockback(bool right)
+        {
+
+        }
+
         void Start()
         {
+            combat = GetComponent<Combat>();
+            rb = GetComponent<Rigidbody2D>();
+            groundLayerMask = LayerMask.GetMask("Default");
+
             inventory = Enumerable.Range(0, InventorySize).Select(_ => new ItemStack
             {
                 itemId = ItemID.None,
@@ -90,7 +104,7 @@ namespace FMP
                     if (stack.itemId == ItemID.None) return;
 
                     var item = stack.item;
-                    item.BeginUse(point, stack);
+                    item.BeginUse(new ItemBase.UseContext { pl = this, position = point }, stack);
                     hotbar.UpdateDisplay(inventory);
                 }
                 if (Input.GetMouseButtonDown(1))

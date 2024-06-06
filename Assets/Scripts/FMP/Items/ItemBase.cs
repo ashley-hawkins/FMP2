@@ -30,6 +30,12 @@ namespace FMP
 
         public List<Recipe> Recipes;
 
-        public virtual void BeginUse(Vector2 position, ItemStack stack = null) { }
+        public struct UseContext
+        {
+            public Player pl;
+            public Vector2 position;
+        }
+
+        public virtual void BeginUse(UseContext ctx, ItemStack stack = null) { }
     }
 }

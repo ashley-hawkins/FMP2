@@ -8,10 +8,10 @@ namespace FMP
     public class PickaxeItem : ItemBase
     {
         public int miningLevel;
-        public override void BeginUse(Vector2 position, ItemStack stack)
+        public override void BeginUse(UseContext ctx, ItemStack stack)
         {
             var wm = WorldManager.instance;
-            var gridCoords = wm.WorldToGrid(position);
+            var gridCoords = wm.WorldToGrid(ctx.position);
             Debug.Log(gridCoords);
             wm.BreakBlock(gridCoords, miningLevel);
         }
