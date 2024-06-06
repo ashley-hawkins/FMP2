@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace FMP
 {
-    public class HotbarItem : MonoBehaviour
+    public class HotbarItem : MonoBehaviour, IPointerClickHandler
     {
         private UnityEngine.UI.Image backgroundImage;
         public ItemIcon itemIcon;
 
         public Color selectedColor;
         public Color deselectedColor;
+
+        public SlotClickedHandler hb;
+
         void Awake()
         {
             backgroundImage = GetComponent<UnityEngine.UI.Image>();
         }
 
-        // Update is called once per frame
-        void Update()
+        private void Start()
         {
-        
+            hb = GetComponentInParent<SlotClickedHandler>();
         }
 
         public void SetItemNumberText(string text)
@@ -36,5 +40,12 @@ namespace FMP
         {
             backgroundImage.color = selected ? selectedColor : deselectedColor;
         }
+
+        public void SelectSelf()
+        {
+            hb.SlotClicked(transform.GetSiblingIndex());
+        }
+
+        public void OnPointerClick(PointerEventData eventData) { SelectSelf(); }
     }
 }

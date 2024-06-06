@@ -15,9 +15,5 @@ MonoBehaviour:
   Name: Stone Pickaxe
   Icon: {fileID: 21300000, guid: 4c71b563a8e0dbe9aa34170dedc0d609, type: 3}
   WorldSprite: {fileID: 21300000, guid: f7c01978f7ebddf8caf55e1368dc70ab, type: 3}
-  Recipes:
-  - recipe:
-    - item: {fileID: 0}
-      itemId: 0
-      amount: 0
+  Recipes: []
   miningLevel: 5

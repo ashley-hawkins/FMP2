@@ -92,6 +92,7 @@ MonoBehaviour:
   itemIcon: {fileID: 1711198917976624997}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
+  hb: {fileID: 0}
 --- !u!1001 &1141161321337232166
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,9 +9,9 @@ namespace FMP
     {
         int selectedItemIndex = 0;
         public Hotbar hotbar;
-        public static int InventorySize = 40;
+        public const int InventorySize = 40;
         public static Player instance;
-        List<ItemStack> inventory = new();
+        public List<ItemStack> inventory { get; private set; }
 
         Rigidbody2D rb;
         LayerMask groundLayerMask;
@@ -35,16 +35,23 @@ namespace FMP
 
         void Start()
         {
-            inventory.Add(new ItemStack
+            inventory = Enumerable.Range(0, InventorySize).Select(_ => new ItemStack
+            {
+                itemId = ItemID.None,
+                amount = 0,
+            }).ToList();
+
+            inventory[0] = new ItemStack
             {
                 itemId = ItemID.StonePickaxe,
                 amount = 1
-            });
-            inventory.Add(new ItemStack
+            };
+            inventory[1] = new ItemStack
             {
                 itemId = ItemID.GoldPickaxe,
                 amount = 1
-            });
+            };
+
             hotbar.UpdateDisplay(inventory);
             hotbar.DisplaySelectedIndex(selectedItemIndex);
             TeleportToSpawn();
@@ -80,6 +87,8 @@ namespace FMP
                     // var block = new Block() { tileType = TileType.Grass };
                     // wm.SetBlock(gridCoords, block);
                     var stack = inventory[selectedItemIndex];
+                    if (stack.itemId == ItemID.None) return;
+
                     var item = stack.item;
                     item.BeginUse(point, stack);
                     hotbar.UpdateDisplay(inventory);
@@ -207,14 +216,13 @@ namespace FMP
 
             //animator.SetBool("Walking", desiredSpeed != 0);
         }
-        void OnTriggerEnter2D(Collider2D other)
+
+        public void AddItemStackToInventory(ItemStack itemStack)
         {
-            if (!other.CompareTag("DroppedItem")) return;
-            var di = other.GetComponent<DroppedItem>();
-            var existingStack = inventory.Find(x => x.itemId == di.itemStack.itemId && x.amount != 0);
+            var existingStack = inventory.Find(x => x.itemId == itemStack.itemId && x.amount != 0);
             if (existingStack != null)
             {
-                existingStack.Add(di.itemStack.amount);
+                existingStack.Add(itemStack.amount);
             }
             else
             {
@@ -222,14 +230,21 @@ namespace FMP
                 if (emptyStack != null)
                 {
                     emptyStack.amount = 0;
-                    emptyStack.itemId = di.itemStack.itemId;
-                    emptyStack.Add(di.itemStack.amount);
+                    emptyStack.itemId = itemStack.itemId;
+                    emptyStack.Add(itemStack.amount);
                 }
                 else
                 {
-                    inventory.Add(di.itemStack);
+                    inventory.Add(itemStack);
                 }
             }
+        }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (!other.CompareTag("DroppedItem")) return;
+            var di = other.GetComponent<DroppedItem>();
+            AddItemStackToInventory(di.itemStack);
             hotbar.UpdateDisplay(inventory);
             Destroy(other.gameObject);
         }
