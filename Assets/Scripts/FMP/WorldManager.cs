@@ -18,6 +18,8 @@ namespace FMP
         GoldPickaxe,
         DarkStoneBlock,
         IronOreBlock,
+        FirstItem = DirtBlock,
+        LastItem = IronOreBlock
     }
 
     [System.Serializable]
@@ -101,8 +103,7 @@ namespace FMP
             print("Breaking block: " + block.tileType.ToString());
             droppedItem.itemStack = new ItemStack
             {
-                itemId = (int)blocks[(int)block.tileType].dropId,
-                item = ItemManager.instance.Items[(int)blocks[(int)block.tileType].dropId],
+                itemId = blocks[(int)block.tileType].dropId,
                 amount = 1
             };
         }

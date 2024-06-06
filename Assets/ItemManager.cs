@@ -8,7 +8,7 @@ namespace FMP
     public class ItemManager : MonoBehaviour
     {
         public static ItemManager instance;
-        public ItemBase[] Items;
+        private ItemBase[] Items;
         private ItemBase.Recipe[] Recipes;
 
         public ItemBase.Recipe[] GetRecipes()
@@ -29,17 +29,10 @@ namespace FMP
             }
             instance = this;
         }
-
-        // Start is called before the first frame update
-        void Start()
-        {
         
-        }
-
-        // Update is called once per frame
-        void Update()
+        public static ItemBase ItemFromID(ItemID id)
         {
-        
+            return instance.Items[(int)id];
         }
     }
 }

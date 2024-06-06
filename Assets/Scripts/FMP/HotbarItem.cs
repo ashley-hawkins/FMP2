@@ -6,11 +6,8 @@ namespace FMP
 {
     public class HotbarItem : MonoBehaviour
     {
-        public TMPro.TextMeshProUGUI itemNumberText;
-        public TMPro.TextMeshProUGUI itemAmountText;
-        public UnityEngine.UI.Image image;
-
-        public UnityEngine.UI.Image backgroundImage;
+        private UnityEngine.UI.Image backgroundImage;
+        public ItemIcon itemIcon;
 
         public Color selectedColor;
         public Color deselectedColor;
@@ -27,20 +24,12 @@ namespace FMP
 
         public void SetItemNumberText(string text)
         {
-            itemNumberText.text = text;
+            itemIcon.SetItemNumberText(text);
         }
 
         public void UpdateDisplay(ItemStack stack)
         {
-            if (stack.itemId == (int)ItemID.None)
-            {
-                image.enabled = false;
-                itemAmountText.text = "";
-                return;
-            }
-            image.enabled = true;
-            itemAmountText.text = stack.amount.ToString();
-            image.sprite = ItemManager.instance.Items[stack.itemId].Icon;
+            itemIcon.UpdateDisplay(stack);
         }
 
         public void SetSelected(bool selected)

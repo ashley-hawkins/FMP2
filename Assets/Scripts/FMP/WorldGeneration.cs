@@ -31,10 +31,10 @@ namespace FMP
     [System.Serializable]
     public class Block
     {
-        
+
         public TileType tileType;
     }
-    
+
     [System.Serializable]
     public class Wall
     {
@@ -56,12 +56,11 @@ namespace FMP
             if (amount <= 0)
             {
                 amount = 0;
-                item = null;
-                itemId = (int)ItemID.None;
+                itemId = ItemID.None;
             }
         }
-        public ItemBase item;
-        public int itemId;
+        public ItemID itemId;
+        public ItemBase item { get { return ItemManager.ItemFromID(itemId); } }
         public int amount;
     }
 
@@ -91,7 +90,7 @@ namespace FMP
         {
             // Angle between pixels
             // float minAngle = Mathf.Acos(1f - 1f / radius);
-            
+
             // for (float angle = 0; angle < 360; angle += minAngle)
             // {
             //     int circumX = pos.x + Mathf.RoundToInt(Mathf.Cos(angle) * radius);
@@ -104,7 +103,7 @@ namespace FMP
             //     }
             // }
 
-            
+
             // x ^ 2 + y ^ 2 = r ^ 2
             var r_sq = radius * radius;
             for (int x = 0; x < radius; x++)
@@ -113,7 +112,8 @@ namespace FMP
                 var x_sq = x * x;
                 var max_y = Mathf.RoundToInt(Mathf.Sqrt(r_sq - x_sq));
 
-                System.Action<Vector2Int> doSingleTile = (Vector2Int offset) => {
+                System.Action<Vector2Int> doSingleTile = (Vector2Int offset) =>
+                {
                     var offsetPos = pos + offset;
                     if (0 < offsetPos.x && offsetPos.x < caveMap.GetUpperBound(0) && 0 < offsetPos.y && offsetPos.y < caveMap.GetUpperBound(1))
                     {
@@ -134,7 +134,7 @@ namespace FMP
         {
             // Angle between pixels
             // float minAngle = Mathf.Acos(1f - 1f / radius);
-            
+
             // for (float angle = 0; angle < 360; angle += minAngle)
             // {
             //     int circumX = pos.x + Mathf.RoundToInt(Mathf.Cos(angle) * radius);
@@ -146,15 +146,16 @@ namespace FMP
             //             caveMap[x, circumY] = false;
             //     }
             // }
-            System.Action<Vector2Int> doSingleTile = (Vector2Int offset) => {
+            System.Action<Vector2Int> doSingleTile = (Vector2Int offset) =>
+            {
                 var offsetPos = pos + offset;
                 if (0 <= offsetPos.x && 0 <= offsetPos.y)
                 {
-                    WorldManager.instance.SetBlock(offsetPos, new Block { tileType = tileType});
+                    WorldManager.instance.SetBlock(offsetPos, new Block { tileType = tileType });
                 }
             };
 
-            
+
             // x ^ 2 + y ^ 2 = r ^ 2
             var r_sq = radius * radius;
             for (int x = 0; x <= radius; x++)
@@ -168,15 +169,15 @@ namespace FMP
                 var y = max_y;
                 //for (int y = 0; y <= max_y; ++y)
                 //{
-                    doSingleTile(new Vector2Int(x, y));
-                    doSingleTile(new Vector2Int(-x, y));
-                    doSingleTile(new Vector2Int(x, -y));
-                    doSingleTile(new Vector2Int(-x, -y));
-                    
-                    doSingleTile(new Vector2Int(y, x));
-                    doSingleTile(new Vector2Int(y, -x));
-                    doSingleTile(new Vector2Int(-y, x));
-                    doSingleTile(new Vector2Int(-y, -x));
+                doSingleTile(new Vector2Int(x, y));
+                doSingleTile(new Vector2Int(-x, y));
+                doSingleTile(new Vector2Int(x, -y));
+                doSingleTile(new Vector2Int(-x, -y));
+
+                doSingleTile(new Vector2Int(y, x));
+                doSingleTile(new Vector2Int(y, -x));
+                doSingleTile(new Vector2Int(-y, x));
+                doSingleTile(new Vector2Int(-y, -x));
                 //}
             }
         }
@@ -253,7 +254,10 @@ namespace FMP
                 }
             }
 
-            var ironOreSeed = new Vector2(UnityEngine.Random.Range(-50000f, 50000f), UnityEngine.Random.Range(-50000f, 50000f));
+            var ironOreSeed = new Vector2(
+                UnityEngine.Random.Range(-50000f, 50000f),
+                UnityEngine.Random.Range(-50000f, 50000f)
+            );
             for (int i = 0; i < worldSize.x; ++i)
             {
                 for (int j = 0; j < worldSize.y; ++j)

@@ -1,51 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace FMP
 {
     public class CraftingMenu : MonoBehaviour
     {
+        GameObject itemSlotPrefab;
         List<ItemBase> craftables;
 
         List<ItemID> GetCraftableItems(List<ItemStack> availableResources)
         {
-            List<ItemID> craftableItems = new();
-            List<ItemID> allItems = new(); // placeholder
-            foreach (ItemID itemId in allItems)
-            {
-                var item = ItemManager.instance.Items[(int)itemId];
-                foreach (var recipe in item.Recipes)
-                {
-                    var craftable = true;
-                    foreach (var stack in recipe.recipe)
-                    {
-                        bool resourceFound = false;
-                        var stackItemId = stack.itemId;
-                        var stackAmount = stack.amount;
+            var allItemIds = Enumerable
+                               .Range((int)ItemID.FirstItem,
+                                      (int)ItemID.LastItem - (int)ItemID.FirstItem + 1)
+                               .Select(id => (ItemID)id);
 
-                        foreach (var resource in availableResources)
-                        {
-                            if (resource.itemId == stackItemId && resource.amount <= stackAmount)
-                            {
-                                resourceFound = true;
-                                break;
-                            }
-                        }
-                        if (!resourceFound)
-                        {
-                            craftable = false;
-                            break;
-                        }
-                    }
-                    if (craftable)
-                    {
-                        craftableItems.Add(itemId);
-                    }
-                }
-            }
-            return craftableItems;
+            return allItemIds
+                     .Where(
+                         // Which means: any of the recipes is valid
+                         itemId => ItemManager.ItemFromID(itemId).Recipes.Any(
+                             // Which means for the recipe: all of the itemStacks are satisfied
+                             recipe => recipe.itemStacks.All(
+                                 // Which means for the itemStack: there is enough of the item in the available resources
+                                 stack => availableResources.Any(
+                                     resource => resource.itemId == stack.itemId && resource.amount >= stack.amount
+                                 )
+                             )
+                         )
+                     )
+                     .ToList();
         }
+        
 
         void Refresh()
         {

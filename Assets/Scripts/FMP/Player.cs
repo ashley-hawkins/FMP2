@@ -29,18 +29,14 @@ namespace FMP
         // Start is called before the first frame update
         void Start()
         {
-            int pickId = (int)ItemID.StonePickaxe;
             inventory.Add(new ItemStack
             {
-                itemId = pickId,
-                item = ItemManager.instance.Items[pickId],
+                itemId = ItemID.StonePickaxe,
                 amount = 1
             });
-            pickId = (int)ItemID.GoldPickaxe;
             inventory.Add(new ItemStack
             {
-                itemId = pickId,
-                item = ItemManager.instance.Items[pickId],
+                itemId = ItemID.GoldPickaxe,
                 amount = 1
             });
             hotbar.UpdateDisplay(inventory);
@@ -213,7 +209,6 @@ namespace FMP
             if (existingStack != null)
             {
                 existingStack.Add(di.itemStack.amount);
-                existingStack.item = di.itemStack.item;
             }
             else
             {
@@ -222,7 +217,6 @@ namespace FMP
                 {
                     emptyStack.amount = 0;
                     emptyStack.itemId = di.itemStack.itemId;
-                    emptyStack.item = di.itemStack.item;
                     emptyStack.Add(di.itemStack.amount);
                 }
                 else
