@@ -18,8 +18,9 @@ namespace FMP
         GoldPickaxe,
         DarkStoneBlock,
         IronOreBlock,
+        RefinedIron,
         FirstItem = DirtBlock,
-        LastItem = IronOreBlock
+        LastItem = RefinedIron
     }
 
     [System.Serializable]
@@ -90,6 +91,8 @@ namespace FMP
         public void BreakBlock(Vector2Int coords, int miningLevel)
         {
             var block = GetBlock(coords);
+
+            if (block == null) return;
 
             if (blocks[(int)block.tileType].miningLevel > miningLevel)
                 return; // Pickaxe too weak

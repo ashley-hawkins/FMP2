@@ -173,10 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 637962223}
-  itemAmountText: {fileID: 1205188936}
-  image: {fileID: 1299007395}
-  backgroundImage: {fileID: 5220263}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &5220263
@@ -925,10 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 2026966768}
-  itemAmountText: {fileID: 481742876}
-  image: {fileID: 1607428308}
-  backgroundImage: {fileID: 74111397}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &74111397
@@ -2996,10 +2990,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 508495805}
-  itemAmountText: {fileID: 1430533719}
-  image: {fileID: 2086197118}
-  backgroundImage: {fileID: 268233086}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &268233086
@@ -3535,10 +3526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1845640192}
-  itemAmountText: {fileID: 837739716}
-  image: {fileID: 2128289757}
-  backgroundImage: {fileID: 394786033}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &394786033
@@ -3632,10 +3620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 889378372}
-  itemAmountText: {fileID: 1551963415}
-  image: {fileID: 648489296}
-  backgroundImage: {fileID: 398382313}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &398382313
@@ -3938,10 +3923,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1460277695}
-  itemAmountText: {fileID: 209938610}
-  image: {fileID: 571300365}
-  backgroundImage: {fileID: 406189077}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &406189077
@@ -4083,10 +4065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 204146835}
-  itemAmountText: {fileID: 1075837526}
-  image: {fileID: 881717829}
-  backgroundImage: {fileID: 410335182}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &410335182
@@ -4180,10 +4159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1933330476}
-  itemAmountText: {fileID: 663200717}
-  image: {fileID: 678994918}
-  backgroundImage: {fileID: 419566162}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &419566162
@@ -4277,6 +4253,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8082f640a32afe58f8433efaf3830c58, type: 2}
   - {fileID: 11400000, guid: f287e2ecd10dd559a9f05e953a17e4cb, type: 2}
   - {fileID: 11400000, guid: 092ee085d227e0c54838c45e72fb5396, type: 2}
+  - {fileID: 11400000, guid: 832f92aabe69e4ffba4b1aa9f1dd9a11, type: 2}
 --- !u!1 &434307082
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,10 +5068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1978805806}
-  itemAmountText: {fileID: 301099993}
-  image: {fileID: 1421762808}
-  backgroundImage: {fileID: 504937696}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &504937696
@@ -5322,10 +5296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1624259655}
-  itemAmountText: {fileID: 1136874171}
-  image: {fileID: 2132968522}
-  backgroundImage: {fileID: 509245105}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &509245105
@@ -5671,10 +5642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1226887617}
-  itemAmountText: {fileID: 877198989}
-  image: {fileID: 782566269}
-  backgroundImage: {fileID: 542278567}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &542278567
@@ -5768,10 +5736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 783013438}
-  itemAmountText: {fileID: 1359596074}
-  image: {fileID: 145240567}
-  backgroundImage: {fileID: 547394701}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &547394701
@@ -5865,10 +5830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 64466968}
-  itemAmountText: {fileID: 657477125}
-  image: {fileID: 467584863}
-  backgroundImage: {fileID: 567396312}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &567396312
@@ -6112,10 +6074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1334667724}
-  itemAmountText: {fileID: 1072120382}
-  image: {fileID: 115596889}
-  backgroundImage: {fileID: 583212744}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &583212744
@@ -6209,10 +6168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 2014439977}
-  itemAmountText: {fileID: 1782194532}
-  image: {fileID: 1600580301}
-  backgroundImage: {fileID: 585696263}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &585696263
@@ -6903,10 +6859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 261842422}
-  itemAmountText: {fileID: 1176035694}
-  image: {fileID: 1293036403}
-  backgroundImage: {fileID: 642405169}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &642405169
@@ -7895,10 +7848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 213242437}
-  itemAmountText: {fileID: 1513052144}
-  image: {fileID: 2045026706}
-  backgroundImage: {fileID: 663540790}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &663540790
@@ -8260,10 +8210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1579168365}
-  itemAmountText: {fileID: 779550519}
-  image: {fileID: 2047690887}
-  backgroundImage: {fileID: 678967730}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &678967730
@@ -8909,10 +8856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 486474616}
-  itemAmountText: {fileID: 1394445701}
-  image: {fileID: 440886603}
-  backgroundImage: {fileID: 775719433}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &775719433
@@ -10169,10 +10113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1741132473}
-  itemAmountText: {fileID: 927045401}
-  image: {fileID: 502072310}
-  backgroundImage: {fileID: 935438451}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &935438451
@@ -10341,10 +10282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 624527975}
-  itemAmountText: {fileID: 121399053}
-  image: {fileID: 2030913397}
-  backgroundImage: {fileID: 945895728}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &945895728
@@ -10915,10 +10853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 96120207}
-  itemAmountText: {fileID: 1343958060}
-  image: {fileID: 624684392}
-  backgroundImage: {fileID: 1043498634}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1043498634
@@ -11430,10 +11365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 71972813}
-  itemAmountText: {fileID: 2121112551}
-  image: {fileID: 1147967919}
-  backgroundImage: {fileID: 1119565102}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1119565102
@@ -11948,10 +11880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 202622674}
-  itemAmountText: {fileID: 983261029}
-  image: {fileID: 1238906205}
-  backgroundImage: {fileID: 1196487591}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1196487591
@@ -12045,10 +11974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 137822589}
-  itemAmountText: {fileID: 696860116}
-  image: {fileID: 202828651}
-  backgroundImage: {fileID: 1203956327}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1203956327
@@ -12746,7 +12672,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1241719407}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 409087781}
+        m_TargetAssemblyTypeName: FMP.CraftingMenu, Assembly-CSharp
+        m_MethodName: CheckCraftables
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1241719407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13624,10 +13562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 501887574}
-  itemAmountText: {fileID: 2080280657}
-  image: {fileID: 657712548}
-  backgroundImage: {fileID: 1340892945}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1340892945
@@ -13989,10 +13924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 668828591}
-  itemAmountText: {fileID: 1833782608}
-  image: {fileID: 1103390250}
-  backgroundImage: {fileID: 1390683773}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1390683773
@@ -14220,10 +14152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1932150448}
-  itemAmountText: {fileID: 1590986888}
-  image: {fileID: 945266268}
-  backgroundImage: {fileID: 1399000963}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1399000963
@@ -14869,10 +14798,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 75757106}
-  itemAmountText: {fileID: 262028389}
-  image: {fileID: 528492939}
-  backgroundImage: {fileID: 1494531167}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1494531167
@@ -15270,10 +15196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1933095122}
-  itemAmountText: {fileID: 660129036}
-  image: {fileID: 799884391}
-  backgroundImage: {fileID: 1527427488}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1527427488
@@ -15903,10 +15826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1019133583}
-  itemAmountText: {fileID: 664272443}
-  image: {fileID: 577508596}
-  backgroundImage: {fileID: 1592179394}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1592179394
@@ -16683,10 +16603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1656567167}
-  itemAmountText: {fileID: 1795266999}
-  image: {fileID: 648525808}
-  backgroundImage: {fileID: 1748356324}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1748356324
@@ -17048,10 +16965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1859424709}
-  itemAmountText: {fileID: 434307084}
-  image: {fileID: 101457506}
-  backgroundImage: {fileID: 1823466372}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1823466372
@@ -18199,10 +18113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 714372158}
-  itemAmountText: {fileID: 1241179227}
-  image: {fileID: 400187526}
-  backgroundImage: {fileID: 1976001403}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1976001403
@@ -18430,10 +18341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 317527583}
-  itemAmountText: {fileID: 58815329}
-  image: {fileID: 2145906729}
-  backgroundImage: {fileID: 1987970561}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &1987970561
@@ -18603,10 +18511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 149202678}
-  itemAmountText: {fileID: 266651982}
-  image: {fileID: 1081178339}
-  backgroundImage: {fileID: 2010349980}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &2010349980
@@ -18834,10 +18739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 987599404}
-  itemAmountText: {fileID: 70571452}
-  image: {fileID: 1473535493}
-  backgroundImage: {fileID: 2023015494}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &2023015494
@@ -19499,10 +19401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 1421157395}
-  itemAmountText: {fileID: 1552059294}
-  image: {fileID: 7139803}
-  backgroundImage: {fileID: 2086552826}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &2086552826
@@ -19596,10 +19495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 399104427}
-  itemAmountText: {fileID: 658843877}
-  image: {fileID: 750728604}
-  backgroundImage: {fileID: 2088659878}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &2088659878
@@ -19693,10 +19589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a4826e85b9272adbd82e6c2e41e6bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemNumberText: {fileID: 895990552}
-  itemAmountText: {fileID: 659606636}
-  image: {fileID: 1025323534}
-  backgroundImage: {fileID: 2106604507}
+  itemIcon: {fileID: 0}
   selectedColor: {r: 0.2971698, g: 0.5699358, b: 1, a: 0.3882353}
   deselectedColor: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 0.3882353}
 --- !u!114 &2106604507
