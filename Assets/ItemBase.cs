@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace FMP
 {
-    public abstract class ItemBase : ScriptableObject
+    [CreateAssetMenu(fileName = "NewItem", menuName = "FMP/ScriptableObjects/ItemBase", order = 0)]
+    public class ItemBase : ScriptableObject
     {
         public string Name;
         public Sprite Icon;
@@ -13,11 +14,11 @@ namespace FMP
         [System.Serializable]
         public struct Recipe
         {
-            public List<ItemStack> recipe;
+            public List<ItemStack> itemStacks;
         }
 
         public List<Recipe> Recipes;
 
-        public abstract void BeginUse(Vector2 position, ItemStack stack = null);
+        public virtual void BeginUse(Vector2 position, ItemStack stack = null) { }
     }
 }
