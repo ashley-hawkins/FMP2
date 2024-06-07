@@ -32,7 +32,7 @@ namespace FMP
 
         public struct UseContext
         {
-            public Player pl;
+            public Player player;
             public Vector2 position;
         }
 

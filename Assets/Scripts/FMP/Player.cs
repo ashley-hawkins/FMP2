@@ -40,7 +40,9 @@ namespace FMP
 
         void TakeKnockback(bool right)
         {
-
+            var multiplier = right ? 1 : -1;
+            var force = new Vector2(4f * multiplier, 3f) * 15;
+            rb.AddForce(force, ForceMode2D.Impulse);
         }
 
         void Start()
@@ -48,6 +50,8 @@ namespace FMP
             combat = GetComponent<Combat>();
             rb = GetComponent<Rigidbody2D>();
             groundLayerMask = LayerMask.GetMask("Default");
+
+            combat.OnKnockback += TakeKnockback;
 
             inventory = Enumerable.Range(0, InventorySize).Select(_ => new ItemStack
             {
@@ -62,7 +66,7 @@ namespace FMP
             };
             inventory[1] = new ItemStack
             {
-                itemId = ItemID.GoldPickaxe,
+                itemId = ItemID.BasicSword,
                 amount = 1
             };
 
@@ -104,7 +108,7 @@ namespace FMP
                     if (stack.itemId == ItemID.None) return;
 
                     var item = stack.item;
-                    item.BeginUse(new ItemBase.UseContext { pl = this, position = point }, stack);
+                    item.BeginUse(new ItemBase.UseContext { player = this, position = point }, stack);
                     hotbar.UpdateDisplay(inventory);
                 }
                 if (Input.GetMouseButtonDown(1))

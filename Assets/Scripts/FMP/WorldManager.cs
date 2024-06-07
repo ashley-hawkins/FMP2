@@ -19,8 +19,9 @@ namespace FMP
         DarkStoneBlock,
         IronOreBlock,
         RefinedIron,
+        BasicSword,
         FirstItem = DirtBlock,
-        LastItem = RefinedIron
+        LastItem = BasicSword
     }
 
     [System.Serializable]

@@ -8,9 +8,11 @@ namespace FMP
     public class SwordItem : ItemBase
     {
         public int damage;
+        public GameObject prefab;
         public override void BeginUse(UseContext ctx, ItemStack stack)
         {
-            // TODO: this
+            ctx.player.GetComponent<Combat>().DealDamage(10, true);
+            var atk = Instantiate(prefab, ctx.player.transform, false).GetComponent<SwordAttack>();
         }
     }
 }
