@@ -11,7 +11,7 @@ namespace FMP
         public GameObject prefab;
         public override void BeginUse(UseContext ctx, ItemStack stack)
         {
-            ctx.player.GetComponent<Combat>().DealDamage(10, true);
+            // ctx.player.GetComponent<Combat>().DealDamage(10, true); // TEST TODO: REMOVE
             var atk = Instantiate(prefab, ctx.player.transform, false).GetComponent<SwordAttack>();
         }
     }

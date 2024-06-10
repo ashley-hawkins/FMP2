@@ -25,5 +25,19 @@ namespace FMP
                 Destroy(gameObject);
             }
         }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            print("Collision entered");
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.CompareTag("Enemy"))
+                if (collision.gameObject.TryGetComponent<Combat>(out var combat))
+                {
+                    combat.DealDamage(10, true);
+                }
+        }
     }
 }
