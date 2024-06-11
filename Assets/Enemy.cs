@@ -13,7 +13,7 @@ namespace FMP
         void OnKnockback(bool right)
         {
             var multiplier = right ? 1 : -1;
-            var force = new Vector2(4f * multiplier, 3f) * 15;
+            var force = new Vector2(10f * multiplier, 3f) * 15;
             rb.AddForce(force, ForceMode2D.Impulse);
         }
 
@@ -36,7 +36,8 @@ namespace FMP
             foreach (var hit in hits)
             {
                 var obj = hit.collider.gameObject;
-                if (obj != gameObject && !obj.CompareTag("Player"))
+                //if (obj != gameObject && !obj.CompareTag("Player"))
+                if (obj.name == "Tilemap")
                 {
                     return true;
                 }
@@ -58,7 +59,7 @@ namespace FMP
                     canJump = true;
                 }
             }
-            var dist = player.position - transform.position;
+            var dist = playerTransform.position - transform.position;
             if (dist.magnitude > 20 * 32) return;
 
             var wantsDirection = (Mathf.Abs(dist.x) > 0.1) ? Mathf.Sign(dist.x) : 0;
@@ -113,7 +114,7 @@ namespace FMP
         }
 
 
-        public Transform player;
+        public Transform playerTransform;
         SpriteRenderer sr;
 
         bool facingRight;
@@ -122,11 +123,11 @@ namespace FMP
 
         void OnDeath()
         {
-            print("ow oof i'm dead");
+            // TODO: Notify death to enemyspawner
 
-            GameoverScreen.headerText = "You win";
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Gameover");
-            // Destroy(gameObject);
+            //GameoverScreen.headerText = "You win";
+            //UnityEngine.SceneManagement.SceneManager.LoadScene("Gameover");
+            Destroy(gameObject);
         }
 
         void OnDamage(int amount)

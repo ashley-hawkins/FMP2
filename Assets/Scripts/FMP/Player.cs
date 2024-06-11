@@ -41,7 +41,7 @@ namespace FMP
         void TakeKnockback(bool right)
         {
             var multiplier = right ? 1 : -1;
-            var force = new Vector2(4f * multiplier, 3f) * 15;
+            var force = new Vector2(10f * multiplier, 3f) * 15;
             rb.AddForce(force, ForceMode2D.Impulse);
         }
 
