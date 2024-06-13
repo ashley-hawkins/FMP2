@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace FMP
 {
@@ -12,11 +13,23 @@ namespace FMP
 
         public GameObject enemyPrefab;
 
-        public HashSet<GameObject> spawnedEnemies;
+        public HashSet<GameObject> spawnedEnemies = new();
+
+        public int killedEnemies = 29;
+
+        public float startTime;
+
+        public TMPro.TextMeshProUGUI tmpro;
+
+        private void Start()
+        {
+            nextSpawnTime = Time.time + 10;
+            startTime = Time.time;
+        }
 
         void Update()
         {
-            if (Time.time < nextSpawnTime)
+            if (Time.time < nextSpawnTime || spawnedEnemies.Count >= 10)
             {
                 return;
             }
@@ -28,13 +41,43 @@ namespace FMP
             {
                 var enemy = Instantiate(enemyPrefab, pos, Quaternion.identity).GetComponent<Enemy>();
                 enemy.playerTransform = playerTransform;
-                nextSpawnTime = Time.time + 30;
+                enemy.OnKilled += EnemyDespawned;
+                spawnedEnemies.Add(enemy.gameObject);
+                nextSpawnTime = Time.time + 10;
             }
         }
 
-        public void EnemyDespawned(GameObject obj)
+        public void EnemyDespawned(GameObject obj, bool died)
         {
+            if (died)
+            {
+                killedEnemies += 1;
+            }
             spawnedEnemies.Remove(obj);
+            obj.GetComponent<Enemy>().OnKilled -= EnemyDespawned;
+
+            tmpro.text = $"Enemies Killed: {killedEnemies}/10";
+
+            if (killedEnemies == 10)
+            {
+                EndGame(true);
+            }
+        }
+
+        public void EndGame(bool won)
+        {
+            var player = playerTransform.GetComponent<Player>();
+            var blocksMined = player.blocksMined;
+            var blocksPlaced = player.blocksPlaced;
+
+            GameoverScreen.won = won;
+            GameoverScreen.blocksMined = blocksMined;
+            GameoverScreen.blocksPlaced = blocksPlaced;
+            GameoverScreen.itemsCrafted = player.itemsCrafted;
+            GameoverScreen.enemiesKilled = killedEnemies;
+            GameoverScreen.timeSurvivedOrTaken = Time.time - startTime;
+
+            SceneManager.LoadScene("Gameover");
         }
     }
 }

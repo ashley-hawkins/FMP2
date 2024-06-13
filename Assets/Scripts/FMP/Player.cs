@@ -12,6 +12,16 @@ namespace FMP
         public const int InventorySize = 40;
         public static Player instance;
 
+        public int itemsCrafted;
+        public int blocksPlaced;
+        public int blocksMined;
+
+        public UnityEngine.UI.Slider hpSlider;
+
+        public bool swordCooldown = false;
+
+        public EnemySpawner enemySpawner;
+
         Combat combat;
 
         public List<ItemStack> inventory { get; private set; }
@@ -33,9 +43,15 @@ namespace FMP
             return inventory.GroupBy(x => x.itemId).Select(x => new ItemStack { itemId = x.Key, amount = x.Sum(y => y.amount) }).ToList();
         }
 
-        void TakeDamage()
+        void UpdateHealthDisplay()
         {
+            hpSlider.value = combat.currentHealth;
+            hpSlider.maxValue = combat.maxHealth;
+        }
 
+        void TakeDamage(int _amount)
+        {
+            UpdateHealthDisplay();
         }
 
         void TakeKnockback(bool right)
@@ -52,6 +68,11 @@ namespace FMP
             groundLayerMask = LayerMask.GetMask("Default");
 
             combat.OnKnockback += TakeKnockback;
+            combat.OnDamage += TakeDamage;
+            combat.OnDeath += () =>
+            {
+                enemySpawner.EndGame(false);
+            };
 
             inventory = Enumerable.Range(0, InventorySize).Select(_ => new ItemStack
             {
@@ -72,6 +93,7 @@ namespace FMP
 
             hotbar.UpdateDisplay(inventory);
             hotbar.DisplaySelectedIndex(selectedItemIndex);
+
             TeleportToSpawn();
         }
 
@@ -91,6 +113,7 @@ namespace FMP
         // Update is called once per frame
         void Update()
         {
+            UpdateHealthDisplay();
             // Detect left click from player:
             //   Get co-ordinates in the tile grid and call SetBlock on the WorldManager with the block that the player is holding or if the player is holding a pickaxe then call BreakBlock
             if (!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())

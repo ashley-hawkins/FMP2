@@ -13,9 +13,16 @@ namespace FMP
         public bool alive = true;
         public int currentHealth;
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             currentHealth = maxHealth;
+        }
+
+        public void Heal(int amount)
+        {
+            if (!alive) return;
+
+            currentHealth += System.Math.Min(amount, System.Math.Max(maxHealth - currentHealth, 0));
         }
 
         public void DealDamage(int damageAmount, bool right)

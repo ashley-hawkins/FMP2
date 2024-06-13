@@ -13,7 +13,7 @@ namespace FMP
             var wm = WorldManager.instance;
             var gridCoords = wm.WorldToGrid(ctx.position);
             Debug.Log(gridCoords);
-            wm.BreakBlock(gridCoords, miningLevel);
+            if (wm.BreakBlock(gridCoords, miningLevel)) ++ctx.player.blocksMined;
         }
     }
 }

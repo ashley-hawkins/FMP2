@@ -10,6 +10,8 @@ namespace FMP
         private Rigidbody2D rb;
         LayerMask groundLayerMask;
 
+        public event System.Action<GameObject, bool> OnKilled;
+
         void OnKnockback(bool right)
         {
             var multiplier = right ? 1 : -1;
@@ -47,6 +49,11 @@ namespace FMP
 
         void Update()
         {
+            if (transform.position.y < -100)
+            {
+                OnKilled?.Invoke(gameObject, false);
+                Destroy(gameObject);
+            }
             bool canJump = false;
             {
                 //var collider = sr.GetComponent<BoxCollider2D>();
@@ -127,6 +134,7 @@ namespace FMP
 
             //GameoverScreen.headerText = "You win";
             //UnityEngine.SceneManagement.SceneManager.LoadScene("Gameover");
+            OnKilled?.Invoke(gameObject, true);
             Destroy(gameObject);
         }
 

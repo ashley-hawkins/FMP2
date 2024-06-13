@@ -20,8 +20,9 @@ namespace FMP
         IronOreBlock,
         RefinedIron,
         BasicSword,
+        BetterSword,
         FirstItem = DirtBlock,
-        LastItem = BasicSword
+        LastItem = BetterSword
     }
 
     [System.Serializable]
@@ -89,16 +90,16 @@ namespace FMP
             return true;
         }
 
-        public void BreakBlock(Vector2Int coords, int miningLevel)
+        public bool BreakBlock(Vector2Int coords, int miningLevel)
         {
             var block = GetBlock(coords);
 
-            if (block == null) return;
+            if (block == null) return false;
 
             if (blocks[(int)block.tileType].miningLevel > miningLevel)
-                return; // Pickaxe too weak
+                return false; // Pickaxe too weak
             if (block == null || block.tileType == TileType.Air)
-                return; // already "broken"
+                return false; // already "broken"
 
             SetBlock(coords, new Block { tileType = TileType.Air });
             var droppedItem = Instantiate(droppedItemPrefab, ((Vector3Int)(coords * 16)) + new Vector3Int(8, 8, 0), Quaternion.identity).GetComponent<DroppedItem>();
@@ -110,6 +111,7 @@ namespace FMP
                 itemId = blocks[(int)block.tileType].dropId,
                 amount = 1
             };
+            return true;
         }
         public Block GetBlock(Vector2Int coords)
         {

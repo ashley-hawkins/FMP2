@@ -16,6 +16,7 @@ namespace FMP
             var block = new Block() { tileType = tile };
             if (wm.SetBlock(gridCoords, block, false))
             {
+                ++ctx.player.blocksPlaced;
                 stack.Add(-1);
             }
         }

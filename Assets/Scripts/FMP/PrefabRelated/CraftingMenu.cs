@@ -72,6 +72,7 @@ namespace FMP
                     itemId = itemId,
                     amount = 1
                 });
+                ++player.itemsCrafted;
                 return true;
             }
             return false;
